@@ -53,6 +53,41 @@ class ArraySolutions {
             }
             return result
         }
+
+        fun duplicateZeros(arr: IntArray): IntArray {
+            //possible_dups: The count of possible_dups would give us the number of elements to be trimmed off the original array
+            //length_ - possible_dups is the number of elements which would be included in the final array.
+            var possible_dups = 0
+            var length = arr.size - 1
+            println("length: ${length} ")
+            for (left in 0 until length + 1) {
+                if(left > length - possible_dups) {
+                    break
+                }
+                if (arr[left] == 0) {
+                    if(left == length - possible_dups) {
+                        arr[length] = 0
+                        length -= 1
+                        break
+                    }
+                    possible_dups++
+                }
+            }
+            println("possible_dups: ${possible_dups} ")
+            println("length after changed: ${length} ")
+
+            val last = length - possible_dups
+            for (i in last downTo 0) {
+                if (arr[i] == 0) {
+                    arr[i + possible_dups] = 0
+                    possible_dups--
+                    arr[i + possible_dups] = 0
+                } else {
+                    arr[i + possible_dups] = arr[i]
+                }
+            }
+            return arr
+        }
     }
 
 }
