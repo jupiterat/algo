@@ -107,6 +107,20 @@ class ArraySolutions {
 
             return nums1
         }
+
+        fun removeElement(nums: IntArray, num: Int): Int {
+            if(nums.isEmpty()) {
+                return 0
+            }
+            var k = 0
+            for (i in 0 until nums.size) {
+                if(nums[i] != num) {
+                    nums[k] = nums[i]
+                    k++
+                }
+            }
+            return k
+        }
     }
 
 }
