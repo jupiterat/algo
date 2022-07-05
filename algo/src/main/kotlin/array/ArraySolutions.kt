@@ -54,6 +54,9 @@ class ArraySolutions {
             return result
         }
 
+        /**
+         * Duplicate Zeros
+         */
         fun duplicateZeros(arr: IntArray): IntArray {
             //possible_dups: The count of possible_dups would give us the number of elements to be trimmed off the original array
             //length_ - possible_dups is the number of elements which would be included in the final array.
@@ -89,6 +92,9 @@ class ArraySolutions {
             return arr
         }
 
+        /**
+         * Merge Sorted Array
+         */
         fun merge(nums1: IntArray, m: Int, nums2: IntArray, n: Int): IntArray {
 
             var p1 = m - 1
@@ -108,18 +114,44 @@ class ArraySolutions {
             return nums1
         }
 
+        /*
+         *Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The relative order of the elements may be changed.
+         * Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums.
+         * More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result.
+         * It does not matter what you leave beyond the first k elements.
+         * Return k after placing the final result in the first k slots of nums.
+         * Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+         *
+         */
         fun removeElement(nums: IntArray, num: Int): Int {
-            if(nums.isEmpty()) {
+            if (nums.isEmpty()) {
                 return 0
             }
             var k = 0
-            for (i in 0 until nums.size) {
-                if(nums[i] != num) {
+            for (i in nums.indices) {
+                if (nums[i] != num) {
                     nums[k] = nums[i]
                     k++
                 }
             }
             return k
+        }
+
+        /**
+         * Remove Duplicates from Sorted Array
+         */
+        fun removeDuplicates(nums: IntArray): Int {
+            var j = 0
+            for (i in 0 until nums.size - 1) {
+                if (nums[i] != nums[i + 1]) {
+                    println("i: $i value: ${nums[i]},")
+                    nums[j] = nums[i]
+                    j++
+                }
+            }
+            // Store the last element as whether it is unique or repeated, it hasn't stored previously
+            nums[j++] = nums[nums.size - 1]
+            return j
         }
     }
 
