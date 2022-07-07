@@ -153,6 +153,93 @@ class ArraySolutions {
             nums[j++] = nums[nums.size - 1]
             return j
         }
+
+        /**
+         * Check If N and Its Double Exist
+         * Time complexity : O(n) For each element, we try to find its match in the Set object by looping through the array which takes O(n) time.
+         * O(nlogn) in case of collision(TreeMap) - with LinkedListMap, collisions are rare so O(1) -> O(n)
+         * Space complexity : O(n) The space complexity is O(n) because it needs a variable newSet to store the data.
+         */
+        fun checkIfExist(arr: IntArray): Boolean {
+            val set = HashSet<Int>()
+            for (i in arr.indices) {
+                val value = arr[i]
+                if (set.contains(value)) {
+                    print("value at index $i is $value")
+                    return true
+                }
+                set.add(value * 2)
+                if (value % 2 == 0) {
+                    //ignore if it is odd {3, 1, 7, 11}
+                    set.add(value / 2)
+                }
+            }
+            return false
+        }
+
+        /**
+         * Valid Mountain Array
+         * Time Complexity: O(n)
+         * Space Complexity: O(1)
+         */
+        fun validMountainArray(arr: IntArray): Boolean {
+            var j = 0
+            val size = arr.size
+            while (j + 1 < size && arr[j] < arr[j + 1]) {
+                // walk up
+                println("i1: $j: ${arr[j]} - ${arr[j + 1]}")
+                j++
+            }
+
+            if (j == 0 || j == size - 1) {
+                return false
+            }
+            while (j + 1 < size && arr[j] > arr[j + 1]) {
+                println("i2: $j: ${arr[j]} - ${arr[j + 1]}")
+                j++
+            }
+
+            return j == size - 1
+        }
+
+        /**
+         * Replace Elements with Greatest Element on Right Side
+         */
+        fun replaceElements(arr: IntArray): IntArray {
+//            if (arr.size == 1) {
+//                arr[0] = -1
+//            }
+//
+//            for (i in arr.indices) {
+//                if (i < arr.size - 1) {
+//                    var max = arr[i + 1]
+//                    for (j in i + 1 until arr.size) {
+//                        if (arr[j] > max) {
+//                            max = arr[j]
+//                        }
+//                    }
+//                    arr[i] = max
+//                } else {
+//                    arr[i] = -1
+//                }
+//            }
+//            return arr
+            val size = arr.size
+            var max_from_right = arr[size - 1]
+            arr[size - 1] = -1
+            for (i in size - 2 downTo 0) {
+                val temp = arr[i]
+
+                arr[i] = max_from_right
+                println("a[${i}] is ${arr[i]}")
+                if (temp > max_from_right) {
+                    max_from_right = temp
+                }
+            }
+            return arr
+
+        }
+
     }
 
 }
