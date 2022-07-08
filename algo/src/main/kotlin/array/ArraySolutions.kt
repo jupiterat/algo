@@ -240,6 +240,24 @@ class ArraySolutions {
 
         }
 
+        /**
+         * Move Zeroes
+         */
+        fun moveZeroes(nums: IntArray): IntArray {
+            var count = 0
+            for (i in nums.indices) {
+                if (nums[i] != 0) {
+                    nums[count] = nums[i]
+                    count++
+                }
+            }
+            while (count < nums.size) {
+                nums[count] = 0
+                count++
+            }
+            return nums
+        }
+
     }
 
 }
