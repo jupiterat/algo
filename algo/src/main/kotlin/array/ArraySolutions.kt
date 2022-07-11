@@ -258,6 +258,60 @@ class ArraySolutions {
             return nums
         }
 
+        /**
+         * Find Pivot Index
+         */
+        fun pivotIndex(nums: IntArray): Int {
+            var total = 0
+            for (i in nums.indices) {
+                total += nums[i]
+            }
+            var left_sum = 0
+            for (i in nums.indices) {
+                if (total - left_sum - nums[i] == left_sum) {
+                    return i
+                }
+                left_sum += nums[i]
+            }
+            return -1
+        }
+
+        /**
+         * Largest Number At Least Twice of Others
+         */
+        fun dominantIndex(nums: IntArray): Int {
+            var maximumIndex = 0
+            for (i in nums.indices) {
+                if (nums[i] > nums[maximumIndex]) {
+                    maximumIndex = i
+                }
+            }
+            //
+            for (i in nums.indices) {
+                if (i != maximumIndex && nums[i] * 2 > nums[maximumIndex]) {
+                    return -1
+                }
+            }
+            return maximumIndex
+        }
+
+        /**
+         * Plus One
+         */
+        fun plusOne(digits: IntArray): IntArray {
+            for (i in digits.size - 1 downTo 0) {
+                if(digits[i] != 9) {
+                    digits[i]++
+                    return digits
+                }
+                //all 9 -> 0 then add new item
+                digits[i] = 0
+            }
+            val result = IntArray(digits.size + 1)
+            System.arraycopy(digits, 0, result, 1, digits.size)
+            result[0] = 1
+            return result
+        }
     }
 
 }
