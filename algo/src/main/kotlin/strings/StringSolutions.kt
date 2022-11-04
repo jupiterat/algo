@@ -4,6 +4,12 @@ class StringSolutions {
     companion object {
         /**
          * Add binary
+         *
+         * Time Complexity O(max(N,M)) : Where N and M are lengths of input string.
+         * As we are traversing both the string linearly in a single loop, time complexity will be equal to maximum length out of the two input strings .
+         *
+         * Space Complexity O(max(N,M)) :
+         * For storing the result in a string after addition we need string whose size is equal to max of length of the input strings .
          */
         fun addBinary(a: String, b: String): String {
             var i = a.length - 1
@@ -33,5 +39,27 @@ class StringSolutions {
 
             return result.toString()
         }
+
+
+        /**
+         * Implement strStr()
+         * indexOf in java
+         */
+
+        fun strStr(haystack: String, needle: String): Int {
+            if (haystack == needle) {
+                return 0
+            }
+
+            val needleLength = needle.length
+            for (index in 0 until haystack.length + 1 - needleLength) {
+                if (haystack.substring(index, index + needleLength) == needle) {
+                    return index
+                }
+            }
+
+            return -1
+        }
+
     }
 }
