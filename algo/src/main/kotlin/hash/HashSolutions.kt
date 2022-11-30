@@ -132,6 +132,7 @@ class HashSolutions {
          * valid sudoku
          */
         fun isValidSudoku(board: Array<CharArray>): Boolean {
+            //UN_COMPLETED
             val rows = hashSetOf<Char>()
             val cols = hashSetOf<Char>()
             val squares = hashSetOf<Char>()

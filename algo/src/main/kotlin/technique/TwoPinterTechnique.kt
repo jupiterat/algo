@@ -75,6 +75,9 @@ class TwoPinterTechnique {
             return result
         }
 
+        /**
+         * Container With Most Water
+         */
         fun maxArea(height: IntArray): Int {
             var l = 0
             var r = height.size - 1
@@ -98,6 +101,34 @@ class TwoPinterTechnique {
             }
 
             return result
+        }
+
+        /**
+         * Valid Palindrome
+         */
+        fun isPalindrome(s: String): Boolean {
+            var l = 0
+            var r = s.length - 1
+            while (l < r) {
+                while (l < r && !isAlphanumeric(s[l])) {
+                    l++
+                }
+
+                while (l < r && !isAlphanumeric(s[r])) {
+                    r--
+                }
+
+                if (s[l].lowercase() != s[r].lowercase()) {
+                    return false
+                }
+                l++
+                r--
+            }
+            return true
+        }
+
+        private fun isAlphanumeric(c: Char): Boolean {
+            return (c in 'a'..'z') || (c in '0'..'9') || (c in 'A'..'Z')
         }
     }
 }
